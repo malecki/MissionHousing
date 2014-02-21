@@ -1,0 +1,39 @@
+GEO.id,Id
+GEO.id2,Id2
+GEO.display-label,Geography
+HD01_VD01,Estimate; Total:
+HD02_VD01,Margin of Error; Total:
+HD01_VD03,Estimate; Male
+HD02_VD03,Margin of Error; Male
+HD01_VD04,Estimate; Female
+HD02_VD04,Margin of Error; Female
+HD01_VD05,Estimate; Same house 1 year ago:
+HD02_VD05,Margin of Error; Same house 1 year ago:
+HD01_VD06,Estimate; Same house 1 year ago: - Male
+HD02_VD06,Margin of Error; Same house 1 year ago: - Male
+HD01_VD07,Estimate; Same house 1 year ago: - Female
+HD02_VD07,Margin of Error; Same house 1 year ago: - Female
+HD01_VD08,Estimate; Moved within same county:
+HD02_VD08,Margin of Error; Moved within same county:
+HD01_VD09,Estimate; Moved within same county: - Male
+HD02_VD09,Margin of Error; Moved within same county: - Male
+HD01_VD10,Estimate; Moved within same county: - Female
+HD02_VD10,Margin of Error; Moved within same county: - Female
+HD01_VD11,Estimate; Moved from different county within same state:
+HD02_VD11,Margin of Error; Moved from different county within same state:
+HD01_VD12,Estimate; Moved from different county within same state: - Male
+HD02_VD12,Margin of Error; Moved from different county within same state: - Male
+HD01_VD13,Estimate; Moved from different county within same state: - Female
+HD02_VD13,Margin of Error; Moved from different county within same state: - Female
+HD01_VD14,Estimate; Moved from different state:
+HD02_VD14,Margin of Error; Moved from different state:
+HD01_VD15,Estimate; Moved from different state: - Male
+HD02_VD15,Margin of Error; Moved from different state: - Male
+HD01_VD16,Estimate; Moved from different state: - Female
+HD02_VD16,Margin of Error; Moved from different state: - Female
+HD01_VD17,Estimate; Moved from abroad:
+HD02_VD17,Margin of Error; Moved from abroad:
+HD01_VD18,Estimate; Moved from abroad: - Male
+HD02_VD18,Margin of Error; Moved from abroad: - Male
+HD01_VD19,Estimate; Moved from abroad: - Female
+HD02_VD19,Margin of Error; Moved from abroad: - Female
