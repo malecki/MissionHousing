@@ -1,4 +1,4 @@
-setwd("~/git/columbia/MissionHousing/data/census/R")
+setwd("~/git/MissionHousing/data/census/R")
 
 require(stringr)
 
