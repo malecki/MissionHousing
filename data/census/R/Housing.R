@@ -1,4 +1,4 @@
-setwd("~/git/MissionHousing/data/census/R")
+setwd("~/git/columbia/MissionHousing/data/census/R")
 
 require(stringr)
 
@@ -8,11 +8,13 @@ require(stringr)
 theFiles <- dir(path="../2009-2012-SelectedHousing/", pattern = "\\.csv")
 # drop 2009 data
 theFiles <- theFiles[-1:-2]
+theFiles
 
 for(a in theFiles)
 {
   # build a good name to assign to the data
-  nameToUse <- str_sub(string=theFiles, start=5, end=24)
+  nameToUse <- str_sub(string=a, start=5, end=24)
+  # year <- str_sub(string=a, start=5, end=6)
   
   # read in the csv using read.table
   # file.path is a convenient way to specify a folder and file name
@@ -47,8 +49,3 @@ for(a in theFiles)
     assign(x = nameOfMerged, value = df.merged)
   }
 }
-rm(theFiles, a, nameToUse, temp, nameOfMerged, df.metadata, df.annotations, df.annotations.transposed, df.merged)
-
-head(PCT12A)
-tail(PCT12A)
-@
