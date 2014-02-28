@@ -116,6 +116,9 @@ HousingData <- HousingData[,c(1:2,4,6)]
 # Years <- rep(y, times = 1, length.out = 387, each = 129)
 # HousingData$Years <- Years
 
+# Remove 'Estimate;' from row names
+HousingData[,1] <- gsub("Estimate; ", "", HousingData[,1])
+
 # write out data to csv file
 write.table(HousingData, "HousingData2010-2012.csv", sep=",", col.names= TRUE, row.names = FALSE)
 
