@@ -58,27 +58,50 @@ Race2011 <- `11_5YR_B`[4:24,2:11]
 Race2012 <- `12_5YR_B`[4:24,2:11]
 class(Race2012$T208)
 
-# make a year column values numerics
-y <- c(2009, 2010, 2011, 2012)
-dfs <- list (`09_5YR_B`, `10_5YR_B`,`11_5YR_B`, `12_5YR_B`)
+# change numbers to numerics
+for(i in c(2:ncol(Race2009))) {
+  Race2009[,i] <- as.numeric(as.character(Race2009[,i]))
+}
+
+# change numbers to numerics
+for(i in c(2:ncol(Race2010))) {
+  Race2010[,i] <- as.numeric(as.character(Race2010[,i]))
+}
+
+# change numbers to numerics
+for(i in c(2:ncol(Race2011))) {
+  Race2011[,i] <- as.numeric(as.character(Race2011[,i]))
+}
+
+# change numbers to numerics
+for(i in c(2:ncol(Race2012))) {
+  Race2012[,i] <- as.numeric(as.character(Race2012[,i]))
+}
+
+
+# # make a year column values numerics
+# y <- c(2009, 2010, 2011, 2012)
+# dfs <- list (`09_5YR_B`, `10_5YR_B`,`11_5YR_B`, `12_5YR_B`)
 # sum estimates across all census tracks
-Housing2010$Total2010 <- rowSums(Housing2010 [,3:10])
-Housing2011$Total2011 <- rowSums(Housing2011 [,3:10])
-Housing2012$Total2012 <- rowSums(Housing2012 [,3:10])
+Race2009$Total2009 <- rowSums(Race2009 [,3:10])
+Race2010$Total2010 <- rowSums(Race2010 [,3:10])
+Race2011$Total2011 <- rowSums(Race2011 [,3:10])
+Race2012$Total2012 <- rowSums(Race2012 [,3:10])
+
 
 # Combine the data tables together
-RaceData <- cbind(`09_5YR_B`[,c(2,11)], `10_5YR_B`[,c(2,11)],`11_5YR_B`[,c(2,11)], `12_5YR_B`[,c(2,11)])
-RaceData <- RaceData[,c(1:2,4,6,8)]
+RaceData <- cbind(Race2009[,c(1,11)], Race2010$Total2010, Race2011$Total2011, Race2012$Total2012)
+
 # # add a year column to the data frame
 # y <- seq(from=2010, to= 2012)
 # Years <- rep(y, times = 1, length.out = 387, each = 129)
 # HousingData$Years <- Years
 
 # Remove 'Estimate;' from row names
-HousingData[,1] <- gsub("Estimate; ", "", HousingData[,1])
+RaceData[,1] <- gsub("Estimate; ", "", RaceData[,1])
 
 # write out data to csv file
-write.table(HousingData, "HousingData2010-2012.csv", sep=",", col.names= TRUE, row.names = FALSE)
+write.table(RaceData, "RaceData2009-2012.csv", sep=",", col.names= TRUE, row.names = FALSE)
 
 
 
