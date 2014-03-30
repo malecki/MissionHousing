@@ -101,6 +101,8 @@ RaceData <- cbind(Race2009[,c(1,11)], Race2010$Total2010, Race2011$Total2011, Ra
 RaceData[,1] <- gsub("Estimate; ", "", RaceData[,1])
 
 # write out data to csv file
+colnames(RaceData) <- c("Race/Ethnicity", "2009", "2010", "2011", "2012")
+
 write.table(RaceData, "RaceData2009-2012.csv", sep=",", col.names= TRUE, row.names = FALSE)
 
 
