@@ -100,11 +100,29 @@ RaceData <- cbind(Race2009[,c(1,11)], Race2010$Total2010, Race2011$Total2011, Ra
 # Remove 'Estimate;' from row names
 RaceData[,1] <- gsub("Estimate; ", "", RaceData[,1])
 
+# breakout tables according to Hispanic vs. NonHispanic
+NonHispanic <- RaceData[2:11,]
+NonHispanic[,1] <- gsub("Not Hispanic or Latino: - ", "", NonHispanic[,1])
+NonHispanic[1,1] <- c("Total")
+
+Hispanic <- RaceData[12:21,]
+Hispanic[,1] <- gsub("Hispanic or Latino: - ", "", NonHispanic[,1])
+Hispanic[1,1] <- c("Total")
+
+require(data.table)
+NonHispanic <- data.table(NonHispanic)
+
 # write out data to csv file
-colnames(RaceData) <- c("Race/Ethnicity", "2009", "2010", "2011", "2012")
 
 write.table(RaceData, "RaceData2009-2012.csv", sep=",", col.names= TRUE, row.names = FALSE)
 
 
+# graph totals
+NonHispanic1 <- as.data.frame(t(NonHispanic))
+colnames(NonHispanic1) <- c("Year", "Total", "White", "Black", "American Indian", "Asian", "Native Hawaiian", "Some Other Race",
+                            "Two or more races", "Two or more including some other race", "Two or more excluding some other")
+names(NonHispanic1)
+class(RaceData1)
 
+ggplot(RaceData1, aes(x =Year)) + geom_line(color = "darkturquoise")
 
