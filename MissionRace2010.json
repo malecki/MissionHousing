@@ -1,0 +1,101 @@
+{
+	"name": "2010",
+	"children": [
+	{
+	"name": "208",
+	"children":[
+	{"name": "White", "size": 2103},
+	{"name": "Black", "size": 154},
+	{"name": "American Indian", "size": 13},
+	{"name": "Asian", "size": 611},
+	{"name": "Hispanic or Latino", "size": 3793}
+	]
+	},
+	{
+	"name": "209",
+	"children":[
+	{"name": "White", "size": 1846},
+	{"name": "Black", "size": 15},
+	{"name": "American Indian", "size": 5},
+	{"name": "Asian", "size": 573},
+	{"name": "Hispanic or Latino", "size": 2394}
+	]
+	},
+	{
+	"name": "228.01",
+	"children":[
+	{"name": "White", "size": 2059},
+	{"name": "Black", "size": 136},
+	{"name": "Asian", "size": 401},
+	{"name": "Hispanic or Latino", "size": 1815}
+	]
+	},
+	{
+	"name": "228.02",
+	"children":[
+	{"name": "White", "size": 808},
+	{"name": "Black", "size": 35},
+	{"name": "American Indian", "size": 17},
+	{"name": "Asian", "size": 480},
+	{"name": "Hispanic or Latino", "size": 766}
+	]
+	},
+	{
+	"name": "228.03",
+	"children":[
+	{"name": "White", "size": 1267},
+	{"name": "Black", "size": 25},
+	{"name": "Asian", "size": 626},
+	{"name": "Hispanic or Latino", "size": 2693}
+	]
+	},
+	{
+	"name": "229.01",
+	"children":[
+	{"name": "White", "size": 1302},
+	{"name": "Black", "size": 240},
+	{"name": "Asian", "size": 592},
+	{"name": "Hispanic or Latino", "size": 1910}
+	]
+	},
+	{
+	"name": "229.02",
+	"children":[
+	{"name": "White", "size": 484},
+	{"name": "Black", "size": 115},
+	{"name": "Asian", "size": 263},
+	{"name": "Hispanic or Latino", "size": 1862}
+	]
+	},
+	{
+	"name": "229.03",
+	"children":[
+	{"name": "White", "size": 1045},
+	{"name": "Black", "size": 56},
+	{"name": "Asian", "size": 462},
+	{"name": "Hispanic or Latino", "size": 1597}
+	]
+	},
+	{"name": "", "size": 0}
+	]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

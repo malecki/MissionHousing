@@ -82,6 +82,7 @@ var svg = d3.select("body").append("svg")
 d3.json("MissionRace2009.json", function(error, root) {
   if (error) return console.error(error);
 
+
   var focus = root,
       nodes = pack.nodes(root),
       view;
