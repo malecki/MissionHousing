@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<title>Mission District</title>
 <style>
 
 text {
   font: 10px sans-serif;
+}
+
+.year.label{
+  font: 100 40px "Helvetica Neue";
+  fill: #ddd;
 }
 
 </style>
@@ -27,6 +33,14 @@ var svg = d3.select("body").append("svg")
    .append("g")
     .attr("transform", "translate(2,2)");
 
+var label = svg.append("text")
+    .attr("class", "year label")
+    .attr("y", 100 )
+    .attr("height", 200)
+    .attr("x", 50)
+    .text("Demographic Breakdown of SF's Mission District 2009-2012");
+
+
 var color = d3.scale.ordinal()
   .domain(["White", "Black", "American Indian", "Asian", "Hispanic or Latino"])
   .range(["#fff", "#282828", "#ff5e2c", "#FFFF99", "#887"]);
@@ -43,8 +57,14 @@ var getNewData = function() {
     if(currentUrl == "MissionRace.json") {
         currentUrl = "Race2010.json";
     }
-    else {
-        currentUrl = "MissionRace.json";
+    else if (currentUrl == "Race2010.json") {
+        currentUrl = "Race2011.json";
+    } else if (currentUrl == "Race2011.json"){
+      currentUrl = "Race2012.json" ;
+    } else
+
+     {
+      currentUrl = "MissionRace.json"
     }
 
     d3.json(currentUrl, function(error, data) {
@@ -73,7 +93,7 @@ var refresh = function() {
             .attr("r", function(d) { return d.r; });
 
     node.append("title")
-      .text(function(d) {return d.className + ":" + format(d.value) + " " + d.packageName ; });
+      .text(function(d) {return "Census Tract " + d.className + " : " + format(d.value) + " " + d.packageName ; });
 
     node.append("text")
       .style("fill", "#8fb4ae")
@@ -84,6 +104,17 @@ var refresh = function() {
       .style("text-anchor", "middle")
       .style("fill", "#000000")
       .text(function(d) { return d.className.substring(0, d.r/3); });
+
+    node.append("text")
+      .style("fill", "#8fb4ae")
+      .on("click", getNewData)
+      .transition()
+      .duration(2000)
+      .attr("y", 500)
+      .attr("x", 800)
+      .attr("class", "year label")
+      .style("fill", "#000000")
+      .text(function(d) { if  (d.parent === root ) {return d.name ;} else { return ("hi") ; };  });
 
   node.transition()
         .duration(2000)

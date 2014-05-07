@@ -1,0 +1,62 @@
+{
+	"name": "2011",
+	"children": [
+	{
+		"name" : "White",
+		"children" : [
+		{ "name" : "208", "size" : 2088},
+		{ "name" : "209", "size" : 1813},
+		{ "name" : "228.01", "size" : 2184},
+		{ "name" : "228.02", "size" : 873},
+		{ "name" : "228.03", "size" : 1488},
+		{ "name" : "229.01", "size" : 1353},
+		{ "name" : "229.02", "size" : 579},
+		{ "name" : "229.03", "size" : 944}
+		]
+		},
+	{ 
+		"name" : "Black",
+		"children" : [
+		{ "name" : "208", "size" : 162},
+		{ "name" : "209", "size" : 0},
+		{ "name" : "228.01", "size" : 174},
+		{ "name" : "228.02", "size" : 53},
+		{ "name" : "228.03", "size" : 52},
+		{ "name" : "229.01", "size" : 260},
+		{ "name" : "229.02", "size" : 159},
+		{ "name" : "229.03", "size" : 94}
+		]},
+	{ 
+		"name" : "American Indian",
+		"children" : [
+		{ "name" : "208", "size" : 56},
+		{ "name" : "209", "size" : 6},
+		{ "name" : "228.02", "size" : 23}
+		]},
+	{ 
+		"name" : "Asian",
+		"children" : [
+		{ "name" : "208", "size" : 672},
+		{ "name" : "209", "size" : 755},
+		{ "name" : "228.01", "size" : 661},
+		{ "name" : "228.02", "size" : 384},
+		{ "name" : "228.03", "size" : 543},
+		{ "name" : "229.01", "size" : 461},
+		{ "name" : "229.02", "size" : 229},
+		{ "name" : "229.03", "size" : 460}
+		]},
+	{ 
+		"name" : "Hispanic or Latino",
+		"children" : [
+		{ "name" : "208", "size" : 3337},
+		{ "name" : "209", "size" : 2343},
+		{ "name" : "228.01", "size" : 1574},
+		{ "name" : "228.02", "size" : 498},
+		{ "name" : "228.03", "size" : 2824},
+		{ "name" : "229.01", "size" : 1846},
+		{ "name" : "229.02", "size" : 1553},
+		{ "name" : "229.03", "size" : 1384}
+		]}
+
+]
+}
