@@ -59,8 +59,8 @@ var refresh = function() {
   d3.json(currentUrl, function(error, root){
     var node = svg.selectAll(".node")
           .data(bubble.nodes(classes(root))
-          .filter(function(d){ return !d.children; }))
-          .enter().append("g")
+          .filter(function(d){ return !d.children; }));
+    node.enter().append("g")
             .attr("class", "node")
             .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
@@ -76,13 +76,21 @@ var refresh = function() {
       .text(function(d) {return d.className + ":" + format(d.value) + " " + d.packageName ; });
 
     node.append("text")
+      .style("fill", "#8fb4ae")
+      .on("click", getNewData)
+      .transition()
+      .duration(2000)
       .attr("dy", ".3em")
       .style("text-anchor", "middle")
+      .style("fill", "#000000")
       .text(function(d) { return d.className.substring(0, d.r/3); });
 
-
+  node.transition()
+        .duration(2000)
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
     node.select("circle")
+        .on("click", getNewData)
         .transition()
         .duration(2000)
         .style("fill", function(d) { return color(d.packageName); })
