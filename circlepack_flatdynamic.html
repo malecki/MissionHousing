@@ -40,7 +40,6 @@ var label = svg.append("text")
     .attr("x", 50)
     .text("Demographic Breakdown of SF's Mission District 2009-2012");
 
-
 var color = d3.scale.ordinal()
   .domain(["White", "Black", "American Indian", "Asian", "Hispanic or Latino"])
   .range(["#fff", "#282828", "#ff5e2c", "#FFFF99", "#887"]);
@@ -114,13 +113,14 @@ var refresh = function() {
       .attr("x", 800)
       .attr("class", "year label")
       .style("fill", "#000000")
-      .text(function(d) { if  (d.parent === root ) {return d.name ;} else { return ("hi") ; };  });
+      .text(function(d) { if  ( !d.children) {return d.name ; } else { return ("hi") ; };  });
 
   node.transition()
         .duration(2000)
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
     node.select("circle")
+        .attr("r", 0)
         .on("click", getNewData)
         .transition()
         .duration(2000)
