@@ -12,9 +12,33 @@ text {
   fill: #ddd;
 }
 
+
+.d3-tip{
+      font: 100 40px "Helvetica Neue";
+      line-height: 1;
+      font-weight: bold;
+      padding: 12px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      border-radius: 2px;
+    }
+
+.d3-tip: after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0,0,0,0.8);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+    }
+
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script>
 
 var diameter = 1200,
@@ -49,7 +73,17 @@ d3.select("body")
 
 var node;
 var currentJson;
-var currentUrl = "MissionRace.json";
+var newUrl;
+var currentUrl;
+
+
+var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([-10,0])
+      .html(function(d){
+        return  d.className + " : " + format(d.value) + " " + d.packageName ;
+      });
+
 
 var getNewData = function() {
 
@@ -81,9 +115,8 @@ var refresh = function() {
           .filter(function(d){ return !d.children; }));
     node.enter().append("g")
             .attr("class", "node")
-            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-
-    node.append("circle")
+            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+    .append("circle")
             .attr("r", 0)
             .on("click", getNewData)
             .transition()
@@ -91,18 +124,13 @@ var refresh = function() {
             .style("fill", function(d) { return color(d.packageName); })
             .attr("r", function(d) { return d.r; });
 
-    node.append("title")
-      .text(function(d) {return "Census Tract " + d.className + " : " + format(d.value) + " " + d.packageName ; });
-
-    node.append("text")
+ node.append("text")
       .style("fill", "#8fb4ae")
-      .on("click", getNewData)
-      .transition()
-      .duration(2000)
       .attr("dy", ".3em")
       .style("text-anchor", "middle")
-      .style("fill", "#000000")
-      .text(function(d) { return d.className.substring(0, d.r/3); });
+      .text(function(d) { return d.className.substring(0, d.r/3); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
 
     node.append("text")
       .style("fill", "#8fb4ae")
@@ -113,21 +141,27 @@ var refresh = function() {
       .attr("x", 800)
       .attr("class", "year label")
       .style("fill", "#000000")
-      .text(function(d) { if  ( !d.children) {return d.name ; } else { return ("hi") ; };  });
+      .text(function(d) { if  ( d.parent = null ) {return d.name ; } else { return ("hi") ; };  });
+
 
   node.transition()
         .duration(2000)
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
     node.select("circle")
-        .attr("r", 0)
-        .on("click", getNewData)
         .transition()
         .duration(2000)
         .style("fill", function(d) { return color(d.packageName); })
         .attr("r", function(d) { return d.r; })
           });
+
+svg.call(tip);
+
+
+
 }
+
+
 function classes(root) {
   var classes = [];
 
