@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Mission District</title>
+<style>
+
+text {
+  font: 10px sans-serif;
+}
+
+.year.label{
+  font: 100 40px "Helvetica Neue";
+  font-weight: bold;
+  fill: #000;
+}
+
+.label2{
+  font:  100 28px "Helvetica Neue";
+  fill: #ddd;
+}
+
+
+.d3-tip{
+      font: 100 40px "Helvetica Neue";
+      line-height: 1;
+      font-weight: bold;
+      padding: 12px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      border-radius: 2px;
+    }
+
+.d3-tip: after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0,0,0,0.8);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+    }
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script>
+
+var diameter = 1200,
+    format = d3.format(",d"),
+    color = d3.scale.ordinal();
+
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([diameter, diameter])
+    .padding(1.5);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+    .attr("class", "bubble")
+   .append("g")
+    .attr("transform", "translate(2,2)");
+
+var label = svg.append("text")
+    .attr("class", "year label")
+    .attr("y", 100 )
+    .attr("height", 200)
+    .attr("width", 500)
+    .attr("x", 150);
+
+var label2 = svg.append("text")
+    .attr("class", "label2")
+    .attr("y", 145)
+    .attr("x", 400)
+    .text("Click on nodes to get data for another year");
+
+var year = svg.append("text")
+      .attr("y", 1000)
+      .attr("x", 800)
+      .attr("class", "year label")
+      .style("fill", "#000000");
+
+var color = d3.scale.ordinal()
+  .domain(["White", "Black", "American Indian", "Asian", "Hispanic or Latino"])
+  .range(["#fff", "#282828", "#ff5e2c", "#FFFF99", "#887"]);
+
+d3.select("body")
+  .style("background", "#8fb4ae");
+
+var node;
+var currentJson;
+var newUrl;
+var currentUrl;
+
+
+var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([-10,0])
+      .html(function(d){
+        return  d.className + " : " + format(d.value) + " " + d.packageName ;
+      });
+
+
+var getNewData = function() {
+
+    if(currentUrl == "Race2009.json") {
+        currentUrl = "Race2010.json";
+    }
+    else if (currentUrl == "Race2010.json") {
+        currentUrl = "Race2011.json";
+    } else if (currentUrl == "Race2011.json"){
+      currentUrl = "Race2012.json" ;
+    } else
+
+     {
+      currentUrl = "Race2009.json"
+    }
+
+    d3.json(currentUrl, function(error, data) {
+        currentJson = data;
+        refresh();
+    });
+}
+
+var refresh = function() {
+
+
+  d3.json(currentUrl, function(error, root){
+    var node = svg.selectAll(".node")
+          .data(bubble.nodes(classes(root))
+          .filter(function(d){ return !d.children; }));
+    node.enter().append("g")
+            .attr("class", "node")
+            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+    .append("circle")
+            .attr("r", 0)
+            .on("click", getNewData)
+            .transition()
+            .duration(2000)
+            .style("fill", function(d) { return color(d.packageName); })
+            .attr("r", function(d) { return d.r; });
+
+ node.append("text")
+      .style("fill", "#8fb4ae")
+      .attr("dy", ".3em");
+    node.select("text")
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.className.substring(0, d.r/3); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
+
+    svg.select("text")
+      .text( "Demographic Breakdown of SF's Mission District " + root.name );
+
+
+  node.transition()
+        .duration(2000)
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+    node.select("circle")
+        .transition()
+        .duration(2000)
+        .style("fill", function(d) { return color(d.packageName); })
+        .attr("r", function(d) { return d.r; })
+          });
+
+svg.call(tip);
+
+
+
+}
+
+
+function classes(root) {
+  var classes = [];
+
+  function recurse(name, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+    else classes.push({packageName: name, className: node.name, value: node.size});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+
+d3.select(self.frameElement).style("height", diameter + "px");
+
+
+
+
+getNewData();
+
+</script>
+<div></div>
